@@ -14,11 +14,11 @@ You can directly install the dependencies using the provided `setup.sh` file.
 
 ## Run ##
 
-Below are running commands of running FTD. Please replace *env* and *task* with corresponding arguments 
-(e.g. ./scripts/run.sh franka reach). 
+Below are running commands of running FTD and baseline algorithms. Please replace *algo*, *env*, and *task* with corresponding arguments 
+(e.g. ./scripts/run.sh ftd franka reach). 
 
 ```sh
-./scripts/run.sh env task
+./scripts/run.sh algo env task
 ```
 
 If everything goes well, this should yield an output of the form
