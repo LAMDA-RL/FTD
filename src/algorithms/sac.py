@@ -218,7 +218,7 @@ class SAC(object):
         L.log('train_rewardpred/loss', predict_loss, step)
 
     def update_inverse_dynamic_predictor(self, obs, action, next_obs, L, step):
-        predicted_action = self.inverse_dynamic_predictor(obs, next_obs)
+        predicted_action = self.inverse_dynamic_predictor(obs, next_obs, torch.tensor([]).cuda())
         predict_loss = self.inverse_factor * \
                        F.mse_loss(action, predicted_action)
 

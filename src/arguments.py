@@ -238,6 +238,13 @@ def parse_args():
         args.action_repeat = 1
         args.train_steps = '1000k'
 
+    # special for drq-v2, to ensure convergence
+    if args.algorithm == 'drqv2':
+        args.actor_lr = 1e-4
+        args.critic_lr = 1e-4
+        args.batch_size = 512
+        args.projection_dim = 50
+
     args.train_steps = int(args.train_steps.replace('k', '000'))
     args.save_freq = int(args.save_freq.replace('k', '000'))
     args.eval_freq = int(args.eval_freq.replace('k', '000'))

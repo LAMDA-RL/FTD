@@ -111,8 +111,9 @@ class ReplayBuffer(object):
     def __sample_multi_rewards__(self, n=None, n_step=3, def_discount=0.99):
         if n is None:
             n = self.batch_size
-        idxs = np.random.randint(0, self.capacity if self.full else self.idx, size=n)
-        obs, next_obs = self._encode_obses(idxs)
+        idxs = np.random.randint(0, self.capacity - n_step if self.full else self.idx - n_step, size=n)
+        obs, _ = self._encode_obses(idxs)
+        _, next_obs = self._encode_obses(idxs + n_step - 1)
         obs = torch.as_tensor(obs).cuda().float()
         next_obs = torch.as_tensor(next_obs).cuda().float()
         actions = torch.as_tensor(self.actions[idxs]).cuda()
